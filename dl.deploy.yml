@@ -70,7 +70,6 @@ singleuser:
        default: true
        kubespawner_override:
           image: gitlab-registry.cern.ch/escape-wp2/docker-images/datalake-singleuser:c9dd9371
-	  
   extraEnv:
       RUCIO_BASE_URL: "https://srcdev.skatelescope.org/rucio-dev"
       RUCIO_AUTH_URL: "https://srcdev.skatelescope.org/rucio-dev"
