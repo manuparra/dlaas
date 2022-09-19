@@ -48,7 +48,7 @@ hub:
       authenticator_class: oidcauthenticator.OIDCAuthenticator
 
 singleuser:
-  defaultUrl: "/lab/tree/dlaas/dlaccessexample.ipynb"
+  defaultUrl: "/lab/tree/dlaas/index.ipynb"
   cpu:
     limit: 2
     guarantee: 1
