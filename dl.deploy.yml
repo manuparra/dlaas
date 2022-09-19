@@ -70,8 +70,26 @@ singleuser:
        description: "Environment for SKAO DL testbed Access"
        default: true
        kubespawner_override:
-         name: gitlab-registry.cern.ch/escape-wp2/docker-images/jupyterhub
-         tag: 7b71de97
+          image: gitlab-registry.cern.ch/escape-wp2/docker-images/datalake-singleuser:c9dd9371
+	  
+  extraEnv:
+      RUCIO_BASE_URL: "https://srcdev.skatelescope.org/rucio-dev"
+      RUCIO_AUTH_URL: "https://srcdev.skatelescope.org/rucio-dev"
+      RUCIO_DISPLAY_NAME: "SKAO Data Lake"
+      RUCIO_NAME: "skao"
+      RUCIO_DEFAULT_INSTANCE: "skao"
+      RUCIO_OAUTH_ID: "https://wlcg.cern.ch/jwt/v1/any"
+      RUCIO_MODE: "replica"
+      RUCIO_DESTINATION_RSE: "SPSRC_STORM"
+      RUCIO_RSE_MOUNT_PATH: "/data/"
+      RUCIO_PATH_BEGINS_AT: "1"
+      RUCIO_WILDCARD_ENABLED: "1"
+      RUCIO_REPLICATION_RULE_LIFETIME_DAYS: "7"
+      RUCIO_OIDC_AUTH: "file"
+      RUCIO_OIDC_FILE_NAME: "/tmp/oauth.token"
+      RUCIO_DEFAULT_AUTH_TYPE: "oidc"
+      OAUTH2_TOKEN: "FILE:/tmp/eos_oauth.token"
+      RUCIO_CA_CERT: ""
   cmd:
     - /bin/bash
     - /usr/local/bin/datalake-config/configure-datalake.sh
