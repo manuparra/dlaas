@@ -24,7 +24,6 @@ hub:
     - "authstatejupyterhub"
     - "--config"
     - "/usr/local/etc/jupyterhub/jupyterhub_config.py"
-		
   config:
     OIDCAuthenticator:
       client_id: "<redacted>"
