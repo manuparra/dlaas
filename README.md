@@ -83,7 +83,7 @@ Check the status of this deployment:
 watch kubectl get all -n jhub-dl
 ```
 
-:file: :warning:  Uninstalling this deployment:
+:five: :warning:  Uninstalling this deployment:
 
 ```
 helm uninstall jupyterhub -n jhub-dl
