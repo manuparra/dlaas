@@ -14,6 +14,14 @@ In the figure below you can see the general scheme of the platform where Jupyter
 
 ![imagen](https://user-images.githubusercontent.com/7033451/191051003-4543d728-1456-43d2-bd22-f45a400aa42d.png)
 
+
+  * [Structure of the deployment](#structure-of-the-deployment)
+  * [Installation steps](#installation-steps)
+    + [Deployment of a Kubernetes Cluster](#deployment-of-a-kubernetes-cluster)
+    + [Deployment of a Rucio Storage Element with StoRM and WebDav](#deployment-of-a-rucio-storage-element-with-storm-and-webdav)
+    + [Deployment of the Datalake as a Service with JupyterHub](#deployment-of-the-datalake-as-a-service-with-jupyterhub)
+
+
 ## Installation steps
 
 ### Deployment of a Kubernetes Cluster
