@@ -30,11 +30,11 @@ If not, please follow the next instructions: https://github.com/manuparra/rucio-
 
 ### Deployment of the Datalake as a Service with JupyterHub 
 
-1. Configure Storage on Workers nodes: follow the next steps (TBC).
+:one: Configure Storage on Workers nodes: follow the next steps (TBC).
 
 This will enable access to the RSE from worker nodes and containers.
 
-2. Create first configuration:
+:two: Create first configuration:
 
 a) Go to the header node of kubernetes.
 
@@ -59,7 +59,7 @@ Check the status of this deployment:
 watch kubectl get all -n jhub-dl
 ```
 
-3. Apply `configMap`:
+:three:  Apply `configMap`:
 
 ```
 kubectl apply -f dl.configmap.yaml
@@ -71,7 +71,7 @@ Check the status of this deployment:
 watch kubectl get all -n jhub-dl
 ```
 
-4. Deploy single user configuration: 
+:four:  Deploy single user configuration: 
 
 ```
 helm upgrade --cleanup-on-fail jupyterhub/jupyterhub --namespace jhub-dl  --values dl.deploy.singleuser.yaml
@@ -83,7 +83,7 @@ Check the status of this deployment:
 watch kubectl get all -n jhub-dl
 ```
 
-5. Uninstalling this deployment:
+:file: :warning:  Uninstalling this deployment:
 
 ```
 helm uninstall jupyterhub -n jhub-dl
