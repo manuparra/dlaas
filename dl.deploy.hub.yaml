@@ -1,0 +1,51 @@
+jhub-dl: 
+  proxy:
+    secretToken: "6a506704db4977f86e5d7da55a3716c6eb568c58e6f41074a05431fa3fae4b1a"
+    service:
+      type: NodePort
+      nodePorts:
+        http: 30010
+  hub:
+    baseUrl: /dl/
+    extraConfig:
+      authConf.py: |
+        def pre_spawn_hook(authenticator, spawner, auth_state):
+           spawner.environment['ACCESS_TOKEN'] = auth_state['access_token']
+           spawner.environment['REFRESH_TOKEN'] = auth_state['refresh_token']
+           spawner.environment['OAUTH_INSPECTION_ENDPOINT'] = authenticator.userdata_url.replace('https://', '')
+        c.OIDCAuthenticator.pre_spawn_hook = pre_spawn_hook
+    logoConfig: |
+      import urllib.request
+      urllib.request.urlretrieve("https://drive.google.com/uc?export=download&id=1DH8vbKpTcueOl_druObkmFQSOJlo-8Zd", "iaalogo.png")
+      c.JupyterHub.logo_file = '/srv/jupyterhub/iaalogo.png'
+    msgConfig: |
+      c.JupyterHub.template_vars = {'announcement_login': 'Welcome to the ...'}
+    image:
+      name: gitlab-registry.cern.ch/escape-wp2/docker-images/jupyterhub
+      tag: 7b71de97
+    args:
+      - "authstatejupyterhub"
+      - "--config"
+      - "/usr/local/etc/jupyterhub/jupyterhub_config.py"
+    config:
+      OIDCAuthenticator:
+        client_id: "<redacted>"
+        client_secret: "<redacted>"
+        oidc_issuer: https://iam-escape.cloud.cnaf.infn.it/
+        oauth_callback_url: "https://srcdev.skatelescope.org/jupyterhub-dev/hub/oauth_callback"
+        authorize_url: https://iam-escape.cloud.cnaf.infn.it/authorize
+        token_url: https://iam-escape.cloud.cnaf.infn.it/token
+        userdata_url: https://iam-escape.cloud.cnaf.infn.it/userinfo
+        scope:
+          - openid
+          - profile
+          - email
+          # - offline_access
+        username_key: preferred_username
+        exchange_tokens:
+          - https://wlcg.cern.ch/jwt/v1/any
+        verify_aud: true
+        allowed_audience:
+          - https://wlcg.cern.ch/jwt/v1/any
+      JupyterHub:
+        authenticator_class: oidcauthenticator.OIDCAuthenticator
