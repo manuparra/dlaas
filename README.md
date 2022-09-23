@@ -36,18 +36,24 @@ This will enable access to the RSE from worker nodes and containers.
 
 2. Create first configuration:
 
-Go to the header node of kubernetes:
+a) Go to the header node of kubernetes.
+
+b) Clone this repository within kubernetes cluster master node.
+
+c) Add and update `helm`
 
 ```
 helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
 helm repo update
 ```
 
+d) Install our first configuration:
+
 ```
 helm upgrade --cleanup-on-fail --install jhub-dl jupyterhub/jupyterhub --namespace jhub-dl --create-namespace --values dl.deploy.hub.yaml
 ```
 
-Check the status:
+Check the status of this deployment:
 
 ```
 watch kubectl get all -n jhub-dl
@@ -59,10 +65,22 @@ watch kubectl get all -n jhub-dl
 kubectl apply -f dl.configmap.yaml
 ```
 
+Check the status of this deployment:
+
+```
+watch kubectl get all -n jhub-dl
+```
+
 4. Deploy single user configuration: 
 
 ```
 helm upgrade --cleanup-on-fail jupyterhub/jupyterhub --namespace jhub-dl  --values dl.deploy.singleuser.yaml
+```
+
+Check the status of this deployment:
+
+```
+watch kubectl get all -n jhub-dl
 ```
 
 5. Uninstalling this deployment:
