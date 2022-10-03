@@ -32,16 +32,36 @@ If yes, we go to the next step, Add NFS service to the RSE.
 Go to your RSE server and install NFS service:
 
 ```
-sudo yum install nfs-utils nfs-utils-lib
+sudo yum install nfs-utils
 ```
 
 Update service to set it on boot time:
 
+
 ```
-systemctl start nfs-server.service
-systemctl enable nfs-server.service
-systemctl status nfs-server.service
+sudo chkconfig --levels 235 nfs on
 ```
+
+or
+
+```
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
+sudo systemctl status nfs-server.service
+```
+
+Edit `/etc/exports` :
+
+
+```
+/storage/dteam/disk/dev/deterministic/ 192.168.100.100(ro,sync,no_root_squash,no_subtree_check) 192.168.100.101(ro,sync,no_root_squash,no_subtree_check)
+```
+
+*Note*: We are assuming that our RSE folder is living: ``/storage/dteam/disk/dev/deterministic`` and 192.168.100.100 is the IP or the Worker Node #1 and the next for the another node.
+
+
+
+
 
 
 
