@@ -59,8 +59,52 @@ Edit `/etc/exports` :
 
 *Note*: We are assuming that our RSE folder is living: ``/storage/dteam/disk/dev/deterministic`` and 192.168.100.100 is the IP or the Worker Node #1 and the next for the another node.
 
+```
+sudo exportfs -a
+sudo systemctl restart nfs-server.service
+```
 
+Then check the status:
 
+````
+sudo systemctl status nfs-server.service
+````
+
+Now verify the list of exported FS's:
+
+```
+sudo exportfs -arv
+```
+
+Then we go to the workers nodes in order to import the exported folder from the RSE:
+
+```
+ssh -o StrictHostKeyChecking=no -o ForwardAgent=yes -o ProxyJump=core@161.111.167.184 core@192.168.100.100
+```
+
+Create the same folder structure:
+
+```
+sudo mkdir -p /storage/dteam/disk/dev/deterministic/
+```
+
+If you are on a CoreOS you will probably to use:
+
+```
+sudo mkdir -p /var/storage/dteam/disk/dev/deterministic/
+```
+
+And then create a sym link to the ``/storage/...``
+
+```
+sudo ln -s /var/storage/ storage
+```
+
+Then try to mount the folder:
+
+```
+sudo mount 192.168.100.204:/storage/dteam/disk/dev/deterministic/ /var/storage/dteam/disk/dev/deterministic/
+```
 
 
 
