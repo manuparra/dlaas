@@ -1,4 +1,4 @@
-# NFS Storage on RSE and Workers Nodes (Kubernetes
+# NFS Storage on RSE and Workers Nodes (on Kubernetes nodes)
 
 Overall steps:
 
@@ -105,8 +105,6 @@ Then try to mount the folder:
 ```
 sudo mount 192.168.100.204:/storage/dteam/disk/dev/deterministic/ /var/storage/dteam/disk/dev/deterministic/
 ```
-
-
 
 
 ## Installing NFS client on Kubernetes Worker's nodes
