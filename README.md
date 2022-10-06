@@ -38,7 +38,7 @@ If not, please follow the next instructions: https://github.com/manuparra/rucio-
 
 ### Deployment of the Datalake as a Service with JupyterHub 
 
-:one: Configure Storage on Workers nodes: follow the next steps (TBC).
+:one: Configure Storage on Workers nodes: follow the next steps https://github.com/manuparra/dlaas/tree/main/docs/storage
 
 This will enable access to the RSE from worker nodes and containers.
 
