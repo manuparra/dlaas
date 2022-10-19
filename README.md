@@ -2,6 +2,15 @@
 
 This is a complete installation guide for data access from a DataLake with RUCIO using JupyterNotebooks and OIDC token-based authentication.
 
+  * [Structure of the deployment](#structure-of-the-deployment)
+  * [Installation steps](#installation-steps)
+    + [Deployment of a Kubernetes Cluster](#deployment-of-a-kubernetes-cluster)
+    + [Deployment of a Rucio Storage Element with StoRM and WebDav](#deployment-of-a-rucio-storage-element-with-storm-and-webdav)
+    + [Deployment of the Datalake as a Service with JupyterHub](#deployment-of-the-datalake-as-a-service-with-jupyterhub)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 
 *Objectives*:
 
